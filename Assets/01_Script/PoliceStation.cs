@@ -17,6 +17,11 @@ public class PoliceStation : MonoBehaviour
         target = GameObject.Find("handcuffTarget");
     }
 
+    private void Update()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -49,7 +54,7 @@ public class PoliceStation : MonoBehaviour
         GameObject obj = handcuffObj[0];
         if (GameController.Instance.handcuff.Count==0)
         {
-            obj.transform.DOJump(target.transform.position, 5,1,0.5f).OnComplete((() =>
+            obj.transform.DOJump(target.transform.position, 5,1,0.1f).OnComplete((() =>
             {
                 obj.transform.position = target.transform.position;
                 obj.transform.parent = target.transform;
@@ -61,7 +66,7 @@ public class PoliceStation : MonoBehaviour
         {
             GameObject targetPos = GameController.Instance.handcuff[GameController.Instance.handcuff.Count - 1];
             Transform followHandcuff = targetPos.transform;
-            obj.transform.DOJump(followHandcuff.position,10, 1,0.5f).OnComplete((() =>
+            obj.transform.DOJump(followHandcuff.position,10, 1,0.1f).OnComplete((() =>
             {
                 obj.transform.position= followHandcuff.transform.position + new Vector3(0, 0.5f, 0);
                 obj.transform.parent = target.transform;
